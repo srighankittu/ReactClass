@@ -5,6 +5,10 @@ const Hooks = () => {
   // A simple js function that is given to us by react library
   // useState retuns an array [variable_name, setterFunction]
 
+  //HW
+  //Teja -> Create components in your folder -> useState and useEffect, multiply initial count(1) by 2
+  // Vaishnavi -> Create components in your folder -> useState and useEffect, multiply initial count(1) by 3
+
   const [count, setCount] = useState(0); //state variable!
   const [x, setX] = useState(1);
 
