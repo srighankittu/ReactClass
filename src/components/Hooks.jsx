@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Hooks = () => {
-  //What is a hook?
+  //What is a hook
   // A simple js function that is given to us by react library
   // useState retuns an array [variable_name, setterFunction]
 
