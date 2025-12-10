@@ -9,5 +9,5 @@ function UseStates() {
             </button>
         </div>
     );
-}
+}//react
 export default UseStates;
