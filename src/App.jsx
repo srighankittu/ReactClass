@@ -7,6 +7,6 @@ function App() {
       <Hooks />
     </h1>
   );
-}
+} //react
 
 export default App;
