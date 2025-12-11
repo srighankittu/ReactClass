@@ -1,12 +1,15 @@
 import "./App.css";
 // import Hooks from "./components/Hooks";
 import DemoHooks  from "./components/Vaishnavi/DemoHooks";
+import UseStateHooks from "./components/Teja/UseStateHooks";
+import FetchComponent from "./components/Teja/FetchComponent";
 
 function App() {
   return (
-    <h1>
-      <DemoHooks />
-    </h1>
+    <div>
+      <UseStateHooks />
+      <FetchComponent />
+    </div>
   );
 }
 
