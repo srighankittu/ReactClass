@@ -1,12 +1,15 @@
 import "./App.css";
-// import Hooks from "./components/Hooks";
-import DemoHooks  from "./components/Vaishnavi/DemoHooks";
+import FetchDataComponent from "./components/FetchDataComponent";
+import Hooks from "./components/Hooks";
+import DemoHooks from "./components/Vaishnavi/DemoHooks";
 
 function App() {
   return (
-    <h1>
+    <div>
+      <Hooks />
       <DemoHooks />
-    </h1>
+      <FetchDataComponent />
+    </div>
   );
 }
 
