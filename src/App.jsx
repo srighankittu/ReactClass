@@ -11,6 +11,6 @@ function App() {
       <FetchDataComponent />
     </div>
   );
-}
+} //react
 
 export default App;
