@@ -5,7 +5,7 @@ const FetchDataComponent = () => {
   // [{}, {}]
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [x, setX] = useState(0);
+  const [search, setSearch] = useState("");
 
   async function fetchProducts() {
     //API
@@ -16,9 +16,17 @@ const FetchDataComponent = () => {
     console.log(products);
   }
 
+  function searchFilter() {
+    let filteredPrducts = products.filter((product) => {
+      if (product.title.includes(search)) return product;
+    });
+
+    setProducts(filteredPrducts);
+  }
+
   useEffect(() => {
     fetchProducts();
-  }, [x]);
+  }, []);
 
   if (loading) return <div>loading...</div>;
 
@@ -30,21 +38,21 @@ const FetchDataComponent = () => {
           className="border-solid border-1"
           type="text"
           placeholder="Search.."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         ></input>
-        <button>Search</button>
+        <button onClick={searchFilter}>Search</button>
       </div>
       <div className="flex flex-wrap">
         {products.map((product) => {
           return (
-            <>
-              <Product
-                key={product.id} //default
-                title={product.title}
-                description={product.description}
-                price={product.price}
-                image={product.images[0]}
-              />
-            </>
+            <Product
+              key={product.id} //default
+              title={product.title}
+              description={product.description}
+              price={product.price}
+              image={product.images[0]}
+            />
           );
         })}
       </div>
