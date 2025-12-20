@@ -4,6 +4,7 @@ import Product from "./Product";
 const FetchDataComponent = () => {
   // [{}, {}]
   const [products, setProducts] = useState([]);
+  const [filteredPrducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
@@ -12,6 +13,7 @@ const FetchDataComponent = () => {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
     setProducts(data.products);
+    setFilteredProducts(data.products);
     setLoading(false);
     console.log(products);
   }
@@ -20,8 +22,9 @@ const FetchDataComponent = () => {
     let filteredPrducts = products.filter((product) => {
       if (product.title.includes(search)) return product;
     });
+    console.log(filteredPrducts);
 
-    setProducts(filteredPrducts);
+    setFilteredProducts(filteredPrducts);
   }
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const FetchDataComponent = () => {
         <button onClick={searchFilter}>Search</button>
       </div>
       <div className="flex flex-wrap">
-        {products.map((product) => {
+        {filteredPrducts.map((product) => {
           return (
             <Product
               key={product.id} //default
