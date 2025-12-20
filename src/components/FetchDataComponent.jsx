@@ -1,12 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Product from "./Product";
+import TopNav from "./TopNav";
 
 const FetchDataComponent = () => {
   // [{}, {}]
   const [products, setProducts] = useState([]);
   const [filteredPrducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const searchRef = useRef(null);
+  // const [search, setSearch] = useState("");
+  // useState, useEffect, useRef
+  // useMemo, useCallback --> little js depth
+
+  // let, var, const, strings, string operations, array, array operatison, map filter and reduece, objects
+  // Controlled and uncontrollede
+  // controlled --> behaviour of that changes with props, when props are changing the behaviour of the component will also change
+  // uncontroolled --> uncontrolled conponent
+  // prop drilling
+  // Higher order component --> They take a component as an input, and give another component as an output
+  // HOC,
+  // Learn more about routing
+  //prop drilling  -->
+
+  // new project
+  // swiggy open APIs
+  // redux -->
 
   async function fetchProducts() {
     //API
@@ -20,7 +38,8 @@ const FetchDataComponent = () => {
 
   function searchFilter() {
     let filteredPrducts = products.filter((product) => {
-      if (product.title.includes(search)) return product;
+      let searchVal = searchRef.current.value;
+      if (product.title.includes(searchVal)) return product;
     });
     console.log(filteredPrducts);
 
@@ -41,8 +60,7 @@ const FetchDataComponent = () => {
           className="border-solid border-1"
           type="text"
           placeholder="Search.."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          ref={searchRef}
         ></input>
         <button onClick={searchFilter}>Search</button>
       </div>
