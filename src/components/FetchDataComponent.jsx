@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Product from "./Product";
 import TopNav from "./TopNav";
+import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import UserName from "./UserName";
+import EnhancedProduct from "./EnhancedProduct";
 
 const FetchDataComponent = () => {
   // [{}, {}]
@@ -8,6 +12,7 @@ const FetchDataComponent = () => {
   const [filteredPrducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const searchRef = useRef(null);
+  const { user, setUser } = useContext(AppContext);
   // const [search, setSearch] = useState("");
   // useState, useEffect, useRef
   // useMemo, useCallback --> little js depth
@@ -30,7 +35,7 @@ const FetchDataComponent = () => {
     //API
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
-    setProducts(data.products);
+    setProducts(data.products); //[{}. {}]
     setFilteredProducts(data.products);
     setLoading(false);
     console.log(products);
@@ -55,6 +60,8 @@ const FetchDataComponent = () => {
   return (
     <>
       <p className="text-5xl">Products</p>
+
+      <Link to="about">About</Link>
       <div className="border-solid border-2 w-[245px]">
         <input
           className="border-solid border-1"
@@ -64,11 +71,22 @@ const FetchDataComponent = () => {
         ></input>
         <button onClick={searchFilter}>Search</button>
       </div>
+      <div className="border-solid border-2 w-[245px]">
+        <input
+          className="border-solid border-1"
+          type="text"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+        ></input>
+        <button>Search</button>
+      </div>
+      <Link to="user">User</Link>
       <div className="flex flex-wrap">
         {filteredPrducts.map((product) => {
           return (
-            <Product
+            <EnhancedProduct
               key={product.id} //default
+              product={product}
               title={product.title}
               description={product.description}
               price={product.price}
@@ -86,3 +104,4 @@ export default FetchDataComponent;
 // virtual DOM - copy of the real dom.
 // vd 1 - vd
 //2;
+//useContext --> react hook
