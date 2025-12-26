@@ -31,14 +31,20 @@ const FetchDataComponent = () => {
   // swiggy open APIs
   // redux -->
 
+  //dev. qa/staging, prod
+
   async function fetchProducts() {
     //API
-    const response = await fetch("https://dummyjson.com/products");
-    const data = await response.json();
-    setProducts(data.products); //[{}. {}]
-    setFilteredProducts(data.products);
-    setLoading(false);
-    console.log(products);
+    try {
+      const response = await fetch("https://dummyjson-dev.com/products");
+      const data = await response.json();
+      setProducts(data.products); //[{}. {}]
+      setFilteredProducts(data.products);
+      setLoading(false);
+      console.log(products);
+    } catch (error) {
+      setValida("");
+    }
   }
 
   function searchFilter() {
